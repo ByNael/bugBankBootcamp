@@ -1,15 +1,13 @@
 import faker from 'faker';
 
-describe('Transferencia', () => { //fluxo de excessão, a transferencia não devia ser feita
-  it('Registrar usuario, fazer o login, entrar na tela de transferencia e fazer uma transferencia para conta vazia', () => {
+describe('Login', () => { //fluxo feliz de registro de conta
+  it('Registrar um usuário com saldo, fazer login e verificar se a conta foi criada corretamente', () => { //fluxo feliz
     //dados aleatorios
     const name = faker.name.findName();
     const email = faker.internet.email();
     const password = faker.internet.password();
-    const transferValue = faker.datatype.number({ min: 1, max: 1000 });
-    const description = faker.lorem.paragraph();
     var repeatedPassword = password;
-    //registro
+    //Registro
     cy.visit('https://bugbank.netlify.app/');
     cy.clickRegister();
     cy.typeEmail(email);
@@ -23,13 +21,7 @@ describe('Transferencia', () => { //fluxo de excessão, a transferencia não dev
     cy.loginEmail(email);
     cy.loginPassword(password);
     cy.clickAcessar();
-    //tranferencia
-    cy.clickTransferencia();
-    cy.typeTransferValue(transferValue);
-    cy.typeDescription(description);
-    cy.clickTransferirAgora();
     //verificação
-    cy.contains('p', 'Transferencia realizada com sucesso').should('not.exist');
+    cy.contains('span', 'R$ 1.000,00').should('be.visible');
   })
 })
-

@@ -1,32 +1,33 @@
-//comando de clicar no botão "registrar"
+// comandos para clicar em botões
 Cypress.Commands.add('clickRegister', ()=> {
     cy.get('button').contains('Registrar').click();
 });
-//comando de clicar no botão cadastrar
+
 Cypress.Commands.add('clickCadastrar', ()=> {
     cy.get('button').contains('Cadastrar').click({force:true});
 });
-//comando de clicar no botão de criar conta com saldo
+
 Cypress.Commands.add('clickSaldo', () => {
     cy.get('label[id="toggleAddBalance"]').click({force:true});
 });
-//comando de clicar em fechar a tela de sucesso em criar conta
-Cypress.Commands.add('clickFecharModal', () => {
-    cy.get('a[id="btnCloseModal"]').click({force:true});
-});
-//clicar em acessar conta
+
 Cypress.Commands.add('clickAcessar', () => {
     cy.get('button').contains('Acessar').click({force:true});
 });
-//clicar em transferencia
+
 Cypress.Commands.add('clickTransferirAgora', () =>{
     cy.get('button').contains('Transferir agora').click({force:true});
 })
-//clicar em tranferir agora
+
 Cypress.Commands.add('clickTransferencia', () =>{
     cy.get('a[id="btn-TRANSFERÊNCIA"]').click({force:true});
 })
-//informações pessoais
+
+Cypress.Commands.add('clickCloseModal', () =>{
+    cy.get('a[id="btnCloseModal"]').click({force:true});
+})
+
+// comandos de preenchimendo de campos
 Cypress.Commands.add('loginEmail', (email)=>{
     cy.get('input[type="email"]').eq(0).type(email, {force:true});
 });
@@ -36,7 +37,7 @@ Cypress.Commands.add('loginPassword', (password)=>{
 });
 
 Cypress.Commands.add('typeEmail', (email)=>{
-    cy.get('input[type="email"]').eq(1).type(email, {force:true}); //pratica ruim de forçar mas algum erro está ocorrendo com o mapeamento deste elemento
+    cy.get('input[type="email"]').eq(1).type(email, {force:true}); //pratica ruim de forçar mas algum erro está ocorrendo com o mapeamento dos elementos
 });
 
 Cypress.Commands.add('typeName', (name)=>{
